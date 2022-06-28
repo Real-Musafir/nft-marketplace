@@ -21,5 +21,21 @@ contract ERC721 {
     // keep track of how many tokens an owner address has
     mapping (address => uint256) private _OwnedTokensCount;
 
+    function _exists(uint256 tokenId) internal view returns(bool){
+        address owner = _tokenOwner[tokenId];
+        // return truthiness the address is not zero
+        return owner != address(0);
+    }
+
+    function _mint(address to, uint256 tokenId) internal{
+        // requires that the addrss isn't zero
+        require(to!=address(0), 'ERC721: minting to the zero address');
+        
+        //minted for first time so it should not be exist
+        require(!_exists(tokenId), 'ERC721: token alredy minted');
+        _tokenOwner[tokenId] = to;
+        _OwnedTokensCount[to] +=1;
+    
+    }
 
 }
