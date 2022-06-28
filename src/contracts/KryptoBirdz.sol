@@ -9,7 +9,7 @@ contract Kryptobird is ERC721Connector {
 // the name is KryptoBird and the symbole is KBIRDZ
 
 constructor() ERC721Connector('Kryptobird', "KBIRDZ"){
-
+    
 }
 
 }
