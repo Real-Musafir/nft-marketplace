@@ -14,6 +14,12 @@ e. create an event that emits a  transfer log - contract
 */
 
 contract ERC721 {
+
+    event Transfer(
+        address indexed from,
+        address indexed to,
+        uint256 indexed tokenId
+        );
     
     // keep track of token owner address to token ids
     mapping (uint256 => address) private _tokenOwner;
@@ -33,9 +39,13 @@ contract ERC721 {
         
         //minted for first time so it should not be exist
         require(!_exists(tokenId), 'ERC721: token alredy minted');
+        
+        // er are adding a new address with a token id for minting
         _tokenOwner[tokenId] = to;
+
         _OwnedTokensCount[to] +=1;
-    
+
+        emit Transfer(address(0), to, tokenId);
     }
 
 }
