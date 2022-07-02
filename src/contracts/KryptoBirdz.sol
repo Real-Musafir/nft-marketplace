@@ -2,7 +2,7 @@
 pragma solidity >=0.4.22 <0.9.0;
 import './ERC721Connector.sol';
 
-contract Kryptobird is ERC721Connector {
+contract KryptoBird is ERC721Connector {
 
     // array to stroe our nfts
     string[] public kryptoBirdz;
