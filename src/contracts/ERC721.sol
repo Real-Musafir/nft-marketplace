@@ -57,7 +57,8 @@ contract ERC721 {
         return owner != address(0);
     }
 
-    function _mint(address to, uint256 tokenId) internal{
+    //virtual because this _mint functin is overited in ERC721Enumerable
+    function _mint(address to, uint256 tokenId) internal virtual{
         // requires that the addrss isn't zero
         require(to!=address(0), 'ERC721: minting to the zero address');
         
