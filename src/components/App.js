@@ -18,6 +18,7 @@ class App extends Component {
       console.log("No ethereum provider");
     }
   }
+
   async loadBlockchainData() {
     const web3 = window.web3;
     const accounts = await web3.eth.getAccounts();
@@ -55,6 +56,20 @@ class App extends Component {
       window.alert("Smart Contract not deployed");
     }
   }
+
+  // with minting we are sending information and we
+  // need to specify the account
+
+  mint = (kryptoBird) => {
+    this.state.contract.methods
+      .mint(kryptoBird)
+      .send({ from: this.state.account })
+      .once("receipt", (receipt) => {
+        this.setState({
+          kryptoBirdz: [...this.state.kryptoBirdz, receipt],
+        });
+      });
+  };
 
   constructor(props) {
     super(props);
