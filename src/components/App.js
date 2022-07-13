@@ -22,7 +22,7 @@ class App extends Component {
   async loadBlockchainData() {
     const web3 = window.web3;
     const accounts = await web3.eth.getAccounts();
-    this.setState({ account: accounts });
+    this.setState({ account: accounts[0] });
 
     // create a constant js valriable networkId Which
     // is set to blockchain network id
@@ -66,7 +66,7 @@ class App extends Component {
       .send({ from: this.state.account })
       .once("receipt", (receipt) => {
         this.setState({
-          kryptoBirdz: [...this.state.kryptoBirdz, receipt],
+          kryptoBirdz: [...this.state.kryptoBirdz, kryptoBird],
         });
       });
   };
@@ -84,6 +84,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        {console.log(this.state.kryptoBirdz)}
         <nav
           className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow 
          "
@@ -98,7 +99,41 @@ class App extends Component {
             </li>
           </ul>
         </nav>
-        <h1>NFT Marketplace</h1>
+
+        <div className="container-fluid mt-1">
+          <div className="row">
+            <main role="main" className="col-lg-12 d-flex text-center">
+              <div
+                className="content mr-auto ml-auto"
+                style={{ opacity: "0.8" }}
+              >
+                <h1 style={{ color: "white" }}>
+                  KryptoBirdz - NFT Marketplace
+                </h1>
+
+                <form
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    const kryptoBird = this.kryptoBird.value;
+                    this.mint(kryptoBird);
+                  }}
+                >
+                  <input
+                    type="text"
+                    placeholder="Add a file location"
+                    className="form-control mb-1"
+                    ref={(input) => (this.kryptoBird = input)}
+                  />
+                  <input
+                    type="submit"
+                    className="btn btn-primary btn-black"
+                    value="MINT"
+                  />
+                </form>
+              </div>
+            </main>
+          </div>
+        </div>
       </div>
     );
   }
