@@ -6,6 +6,7 @@ import KryptoBird from "../abis/Kryptobird.json";
 class App extends Component {
   async componentDidMount() {
     await this.loadWeb3();
+    await this.loadBlockchainData();
   }
   // first up is to detect ethereum provider
   async loadWeb3() {
@@ -17,6 +18,10 @@ class App extends Component {
     } else {
       console.log("No ethereum provider");
     }
+  }
+  async loadBlockchainData() {
+    const accounts = await window.web3.eth.getAccounts();
+    console.log(accounts);
   }
 
   render() {
