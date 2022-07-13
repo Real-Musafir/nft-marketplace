@@ -20,8 +20,17 @@ class App extends Component {
     }
   }
   async loadBlockchainData() {
-    const accounts = await window.web3.eth.getAccounts();
-    console.log(accounts);
+    const web3 = window.web3;
+    const accounts = await web3.eth.getAccounts();
+    this.setState({ account: accounts });
+    console.log(this.state.account, "okk");
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      account: "",
+    };
   }
 
   render() {
