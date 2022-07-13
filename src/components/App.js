@@ -33,7 +33,26 @@ class App extends Component {
       const address = networkData.address;
       const contract = new web3.eth.Contract(abi, address);
 
-      console.log(contract, "okk");
+      this.setState({ contract });
+      console.log(this.state.contract, "okk");
+
+      // call the total supply of our Krypto Bird
+      // grab the total supply on the front end and log the result
+      const totalSupply = await contract.methods.totalSupply().call();
+      this.setState({ totalSupply });
+
+      // set up an array to keep track ot tokens
+      //load KryptoBird
+      for (let i = 1; i <= totalSupply; i++) {
+        const KryptoBird = await contract.methods.kryptoBirdz(i - 1).call();
+        // how should we handle the state on the frontend?
+        this.setState({
+          kryptoBirdz: [...this.state.kryptoBirdz, KryptoBird],
+        });
+        console.log(this.state.kryptoBirdz, "KryptoBird");
+      }
+    } else {
+      window.alert("Smart Contract not deployed");
     }
   }
 
@@ -41,6 +60,9 @@ class App extends Component {
     super(props);
     this.state = {
       account: "",
+      contract: null,
+      totalSupply: 0,
+      kryptoBirdz: [],
     };
   }
 
