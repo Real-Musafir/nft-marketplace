@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Web3 from "web3";
 import detectEthereumProvider from "@metamask/detect-provider";
 import KryptoBird from "../abis/Kryptobird.json";
+import "./App.css";
+
 import {
   MDBCard,
   MDBCardBody,
@@ -91,12 +93,12 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container-filed">
         {console.log(this.state.kryptoBirdz)}
         <nav
           className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow 
          "
-          style={{ color: "white" }}
+          style={{ color: "black" }}
         >
           <div className="navbar-brand col-sm-3 col-md-3 mr-0">
             KryptoBird NFTs (Non Fungible Tokens)
@@ -115,7 +117,7 @@ class App extends Component {
                 className="content mr-auto ml-auto"
                 style={{ opacity: "0.8" }}
               >
-                <h1 style={{ color: "white" }}>
+                <h1 style={{ color: "black" }}>
                   KryptoBirdz - NFT Marketplace
                 </h1>
 
@@ -151,23 +153,24 @@ class App extends Component {
                     <MDBCard
                       className="token img"
                       style={{ maxWidth: "22rem" }}
-                    />
-                    <MDBCardImage
-                      src={kryptoBird}
-                      position="top"
-                      style={{ marginRight: "4px" }}
-                      height="250rem"
-                    />
-                    <MDBCardBody>
-                      <MDBCardTitle>KrypToBird</MDBCardTitle>
-                      <MDBCardText>
-                        The kryptoBird are 20 uniquely genarated KBird from the
-                        cyberpunk cloud galaxy Mystopia! There is only one of
-                        each bird and each bird can be owned by a single person
-                        on the etherum blockchanin
-                      </MDBCardText>
-                      <MDBBtn href={kryptoBird}>Download</MDBBtn>
-                    </MDBCardBody>
+                    >
+                      <MDBCardImage
+                        src={kryptoBird}
+                        position="top"
+                        style={{ marginRight: "4px" }}
+                        height="250rem"
+                      />
+                      <MDBCardBody>
+                        <MDBCardTitle>KrypToBird</MDBCardTitle>
+                        <MDBCardText>
+                          The kryptoBird are 20 uniquely genarated KBird from
+                          the cyberpunk cloud galaxy Mystopia! There is only one
+                          of each bird and each bird can be owned by a single
+                          person on the etherum blockchanin
+                        </MDBCardText>
+                        <MDBBtn href={kryptoBird}>Download</MDBBtn>
+                      </MDBCardBody>
+                    </MDBCard>
                   </div>
                 </div>
               );
